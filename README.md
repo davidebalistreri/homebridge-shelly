@@ -1,10 +1,14 @@
 <a href="https://github.com/alexryd/homebridge-shelly"><img src="homebridge-shelly.png" height="120"></a>
 
 # homebridge-shelly
-[![npm-version](https://badgen.net/npm/v/homebridge-shelly)](https://www.npmjs.com/package/homebridge-shelly)
-[![npm-total-downloads](https://badgen.net/npm/dt/homebridge-shelly)](https://www.npmjs.com/package/homebridge-shelly)
-[![verified-by-homebridge](https://badgen.net/badge/homebridge/verified/purple)](https://github.com/homebridge/homebridge/wiki/Verified-Plugins)
-[![certified-hoobs-plugin](https://badgen.net/badge/HOOBS/Certified/yellow)](https://plugins.hoobs.org)
+
+> **Maintenance fork**
+>
+> This is an unofficial fork of
+> [alexryd/homebridge-shelly](https://github.com/alexryd/homebridge-shelly)
+> focused on Homebridge 2 compatibility, dependency maintenance and security
+> hardening. It is intended for first-generation Shelly devices and is not an
+> officially verified npm, Homebridge or HOOBS release.
 
 [Homebridge](https://homebridge.io) plugin for [Shelly](https://shelly.cloud),
 enabling HomeKit support for the first generation of Shelly devices.
