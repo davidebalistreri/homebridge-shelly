@@ -1,11 +1,18 @@
 const EventEmitter = require('events')
 
 class Accessory {}
-Accessory.Categories = {
+
+const Categories = {
+  OTHER: 'OTHER',
+  DOOR: 'DOOR',
+  GARAGE_DOOR_OPENER: 'GARAGE_DOOR_OPENER',
   LIGHTBULB: 'LIGHTBULB',
+  OUTLET: 'OUTLET',
   SENSOR: 'SENSOR',
   SWITCH: 'SWITCH',
+  FAUCET: 'FAUCET',
   WINDOW_COVERING: 'WINDOW_COVERING',
+  WINDOW: 'WINDOW',
 }
 
 class Characteristic extends EventEmitter {
@@ -191,14 +198,14 @@ class TargetPosition extends Characteristic {
 }
 Characteristic.TargetPosition = TargetPosition
 
-Characteristic.Formats = {
+const Formats = {
   FLOAT: 'FLOAT',
 }
 
-Characteristic.Perms = {
+const Perms = {
   NOTIFY: 'NOTIFY',
-  READ: 'READ',
-  WRITE: 'WRITE',
+  PAIRED_READ: 'PAIRED_READ',
+  PAIRED_WRITE: 'PAIRED_WRITE',
 }
 
 class PlatformAccessory extends EventEmitter {
@@ -282,7 +289,7 @@ class BatteryService extends Service {
     this.addCharacteristic(StatusLowBattery)
   }
 }
-Service.BatteryService = BatteryService
+Service.Battery = BatteryService
 
 class HumiditySensor extends Service {
   constructor() {
@@ -369,7 +376,10 @@ class Homebridge extends EventEmitter {
 
     this.hap = {
       Accessory,
+      Categories,
       Characteristic,
+      Formats,
+      Perms,
       Service,
       uuid: {
         generate: () => {},
