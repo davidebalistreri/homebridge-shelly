@@ -79,9 +79,8 @@ enough:
 Your Shelly devices should then be automatically discovered, as long as they use the stock firmware (no Tasmota etc.) and are
 on the same network and subnet as the device running homebridge. See [this wiki page](https://github.com/alexryd/homebridge-shelly/wiki/Shelly,-CoAP-and-multicast) if that doesn't work.
 
-To see a list of all discovered devices, visit the administration page by going
-to `http://<IP-ADDRESS>:8181/`, where IP-ADDRESS is the address of the
-device that you are running homebridge on.
+The administration interface is disabled by default. It can be explicitly
+enabled using the `admin.enabled` configuration described below.
 
 ### Network interface
 Sometimes setting the `"networkInterface"` option to the name of the network
@@ -104,9 +103,16 @@ before it is regarded as stale and unregistered from HomeKit. Specify in
 milliseconds. Set to `0` or `false` to disable. Disabled by default.
 
 ### Administration interface
-By default, this plugin will launch an HTTP server on port 8181 to serve an
-administration interface. You can disable this by setting `"admin"."enabled"`
-to `false`. You can also change the port number using `"admin"."port"`.
+The administration interface is disabled by default. Enable it explicitly by
+setting `"admin"."enabled"` to `true`.
+
+When enabled, the HTTP server listens on `127.0.0.1:8181` by default. The bind
+address can be changed using `"admin"."host"` and the port using
+`"admin"."port"`.
+
+The administration interface does not provide its own authentication. Setting
+the host to `0.0.0.0` exposes it to the network and should only be done on a
+trusted network when remote access is explicitly required.
 
 ### Device specific configurations
 Configurations for specific Shelly devices can be set using the `"devices"`

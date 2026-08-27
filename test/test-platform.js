@@ -5,6 +5,8 @@ const shellies = require('shellies')
 const should = require('should')
 const sinon = require('sinon')
 
+const AdminServer = require('../admin')
+
 const Homebridge = require('./mocks/homebridge')
 const log = require('./mocks/log')
 
@@ -33,6 +35,28 @@ describe('ShellyPlatform', function() {
   describe('#constructor()', function() {
     it('should not throw when no config is given', function() {
       should(() => new ShellyPlatform(log)).not.throw()
+    })
+
+    it('should not launch the admin server by default', function() {
+      const listen = sinon.stub(AdminServer.prototype, 'listen')
+
+      new ShellyPlatform(log, {}) // eslint-disable-line no-new
+      homebridge.emit('didFinishLaunching')
+
+      listen.called.should.be.false()
+    })
+
+    it('should launch the admin server when explicitly enabled', function() {
+      const listen = sinon.stub(AdminServer.prototype, 'listen').resolves(8181)
+
+      new ShellyPlatform(log, { // eslint-disable-line no-new
+        admin: {
+          enabled: true,
+        },
+      })
+      homebridge.emit('didFinishLaunching')
+
+      listen.calledOnce.should.be.true()
     })
 
     it('should invoke configure()', function() {

@@ -28,7 +28,13 @@
           "enabled": {
             "title": "Enabled",
             "type": "boolean",
-            "default": true
+            "default": false
+          },
+          "host": {
+            "title": "Bind Address",
+            "type": "string",
+            "default": "127.0.0.1",
+            "description": "Address used by the unauthenticated administration interface. Keep 127.0.0.1 unless remote access is explicitly required."
           },
           "port": {
             "title": "Port Number",
@@ -142,6 +148,10 @@
       "description": "",
       "items": [
         "admin.enabled",
+        {
+          "key": "admin.host",
+          "condition": "admin.enabled"
+        },
         {
           "key": "admin.port",
           "condition": "admin.enabled"

@@ -34,7 +34,7 @@ module.exports = homebridge => {
         this.handleStalePlatformAccessories()
         shellies.start(this.getNetworkInterface())
 
-        if (!this.config.admin || this.config.admin.enabled !== false) {
+        if (this.config.admin && this.config.admin.enabled === true) {
           // start the admin server
           this.adminServer = new AdminServer(this, this.config.admin || {}, log)
           this.adminServer.listen()

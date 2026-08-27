@@ -16,7 +16,10 @@ class AdminServer {
 
   listen() {
     return new Promise((resolve, reject) => {
-      const server = this.app.listen(this.config.port || 8181, () => {
+      const port = this.config.port || 8181
+      const host = this.config.host || '127.0.0.1'
+
+      const server = this.app.listen(port, host, () => {
         resolve(server.address().port)
       }).on('error', e => {
         reject(e)
